@@ -1,7 +1,12 @@
+##Install the needed packages -----------------
 install.packages("RSelenium")
 install.packages("wdman")
-install.packages("RSelenium", dependencies = TRUE)
+install.packages("jsonlite")
+install.packages("httr")
+install.packages("rvest")
+install.packages("dplyr")
 
+##Laoding the Necessary packages -----------------
 library(RSelenium)
 library(wdman)
 library(jsonlite)
@@ -29,6 +34,7 @@ selenium_server <- rsDriver(
 # get the driver client object
 driver <- selenium_server$client
 driver$open()
+
 # navigate to the destination page
 driver$navigate("https://www.autotrader.co.uk/car-search?postcode=BL36BA&advertising-location=at_cars&page=1")
 
@@ -199,24 +205,10 @@ for (link in href_links) {
 print(product_data)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Print the final data frame
 print(car_data)
 View(car_data)
 # Assuming car_data is your data frame
-write.csv(car_data, "C:/Users/-/OneDrive - University of Bolton/Documents/selenium-r-demo/car_data.csv", row.names = FALSE)
 write.csv(car_data, "C:/Users/-/OneDrive - University of Bolton/Documents/selenium-r-demo/car_data.csv", row.names = FALSE, quote = TRUE)
 # close the Selenium client and the server
 driver$close()
